@@ -1,5 +1,5 @@
 ---
-title: "Week 3 Homework Assignment: Titis in the Mist"
+title: "Week 3 Homework: Titis in the Mist"
 author: "Victoria Zdanowicz"
 date: "9/23/2021"
 output: 
