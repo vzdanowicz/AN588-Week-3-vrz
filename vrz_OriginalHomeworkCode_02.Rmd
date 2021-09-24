@@ -1,0 +1,72 @@
+---
+title: "Week 3 Homework Assignment: Titis in the Mist"
+author: "Victoria Zdanowicz"
+date: "9/23/2021"
+output: 
+  html_document:
+    toc: TRUE
+    toc_depth: 3
+    toc_float: TRUE
+---
+
+Prompt - Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+
+# Challenge 1
+
+> What is the probability that she will hear more than 8 calls during any given session?
+
+This question requires the argument [lower = FALSE] to calculate the probability of more than 8 calls since it in the upper tail of the probability density function.
+```{r 1}
+x<- ppois(8, lambda=15, lower=FALSE)    
+x
+```
+ 
+# Challenge 2
+
+> What is the probability that she will hear no calls in a session?
+
+Without the [lower = FALSE] argument, this command calculates the probability of zero or fewer calls in a session.   
+```{r 2}
+x<- ppois(0, lambda=15)    
+x
+```
+
+# Challenge 3
+
+> What is the probability that she will hear exactly 3 calls in a session?
+
+The function dpois() calculates the probability of a random variable, exact number of calls in this instance, that is available within a certain range.
+```{r 3}
+x<- dpois(3, lambda=15, log=FALSE) #if log = TRUE, probability is given as log
+x
+```
+
+# Challenge 4
+
+> Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+I used a histogram to represent the Poisson distribution of the number of calls between 0 and 30. BARPLOT
+```{r 4}
+z<-dpois(0:30, lambda = 15)
+plot(0:30, dpois(0:30, lambda = 15),
+     type='h',
+     main='Poisson Mass Function (lambda = 15)',
+     ylab='Probability',
+     xlab ='# Titi Calls',
+     lwd=3)
+```
+
+# Challenge 5
+
+> Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+The function rpois() is used for generating random numbers from a given Poisson’s distribution.
+```{r 5}
+y<-rpois(104,lambda=15)
+y
+hist(y,xlim=c(0,30),xlab="# Titi Calls",main="Simulated Call Histogram",breaks=30,col="darkslategray2")
+```
+
+Both histograms are similar in general shape/trend but the "Simulated Call Histogram" would likely appear  more similar to the "Poisson Mass Function" as more results are added to the sample size.
