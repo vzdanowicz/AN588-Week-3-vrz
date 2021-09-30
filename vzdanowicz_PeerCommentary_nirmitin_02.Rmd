@@ -1,0 +1,83 @@
+---
+title: "vzdanowicz_PeerCommentary_nirmitin_02"
+author: "Nirmiti Naik"
+date: "9/30/2021"
+output: 
+    html_document:
+      toc: TRUE
+      toc_depth: 3
+      toc_float: TRUE
+---
+
+*NN - The addition of the table of contents/menu bar is really nice! Your assignment looks very streamline and stylistically formatted.*
+
+Prompt - Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+
+# Challenge 1
+
+> What is the probability that she will hear more than 8 calls during any given session?
+This question requires the argument [lower = FALSE] to calculate the probability of more than 8 calls since it in the upper tail of the probability density function.
+
+*NN - I like how you've explained the process behind writing the components of the argument of your function - it makes your understanding of the problem and function clear to the viewer and allows them to better understand the concepts of less than/greater than in terms of ppois() as well. However, it may make it easier to read through if you separate your explanation from the question itself - whether that's by a break or a different sized font, etc. *
+```{r 1}
+x<- ppois(8, lambda=15, lower=FALSE)    
+x
+```
+ 
+# Challenge 2
+
+> What is the probability that she will hear no calls in a session?
+Without the [lower = FALSE] argument, this command calculates the probability of zero or fewer calls in a session.   
+```{r 2}
+x<- ppois(0, lambda=15)    
+x
+```
+
+# Challenge 3
+
+> What is the probability that she will hear exactly 3 calls in a session?
+The function dpois() calculates the probability of a random variable, exact number of calls in this instance, that is available within a certain range.
+
+*NN - similar to above, I think the description of the function and why it's appropriate for the question is very handy.*
+```{r 3}
+x<- dpois(3, lambda=15, log=FALSE) #if log = TRUE, probability is given as log
+x
+```
+
+# Challenge 4
+
+> Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+I used a histogram to represent the Poisson distribution of the number of calls between 0 and 30. BARPLOT
+
+*NN - You've written "BARPLOT" at the end of this, was this a reminder to switch histogram to barplot? Also, your plot looks great! It's very visually appealing and interesting to look at with the modifications you've made to the color, column size, etc.*
+```{r 4}
+z<-dpois(0:30, lambda = 15)
+plot(0:30, dpois(0:30, lambda = 15),
+     type='h',
+     main='Poisson Mass Function (lambda = 15)',
+     ylab='Probability',
+     xlab ='# Titi Calls',
+     lwd=3)
+```
+
+# Challenge 5
+
+> Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+The function rpois() is used for generating random numbers from a given Poisson’s distribution.
+
+*NN - Again, I like the customizations you've made to the histogram. Nice job!*
+```{r 5}
+y<-rpois(104,lambda=15)
+y
+hist(y,xlim=c(0,30),xlab="# Titi Calls",main="Simulated Call Histogram",breaks=30,col="darkslategray2")
+```
+
+Both histograms are similar in general shape/trend but the "Simulated Call Histogram" would likely appear  more similar to the "Poisson Mass Function" as more results are added to the sample size.
+
+NN - Peer commentary questions:
+1. The biggest thing I continue to learn from your code is your attention to detail and use of extra code to make your knitted file more visually appealing and interesting. We discussed how to code for different colored charts and how to add a table of contents which I think will be increasingly helpful as our assignments get more complex.
+2. Our codes are very similar so I don’t think there’s anything I did that varies significantly from your code.
+3. We discussed one of common challenges being unfamiliar with the actual statistics component of this assignment so although the functions would be doing the math for us, we were unsure of what exactly the functions would beg accomplishing. We both had similar approaches and looked at other resources (modules, online, etc.) to familiarize ourselves with the content before applying the functions which I think is extremely resourceful. 
+4. Your code is super easy to follow and well written, nice job :) 
