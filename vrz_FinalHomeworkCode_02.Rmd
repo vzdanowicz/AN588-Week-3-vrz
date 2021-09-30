@@ -59,7 +59,7 @@ plot(0:30, dpois(0:30, lambda = 15),
      type='h',
      main='Poisson Mass Function (lambda = 15)',
      ylab='Probability',
-     xlab ='# Titi Calls',
+     xlab ='Titi Calls',
      lwd=3)
 ```
 
@@ -72,7 +72,7 @@ The function rpois() is used for generating random numbers from a given Poissonâ
 ```{r 5}
 y<-rpois(104,lambda=15)
 y
-hist(y,xlim=c(0,30),xlab="# Titi Calls",main="Simulated Call Histogram",breaks=c(0:30),col="darkslategray2")
+hist(y,xlim=c(0,30),xlab="Titi Calls",main="Simulated Call Histogram",breaks=c(0:30),col="darkslategray2")
 ```
 
 Both histograms are similar in general shape/trend but the "Simulated Call Histogram" would likely appear more similar to the "Poisson Mass Function" as more results are added to the sample size.
